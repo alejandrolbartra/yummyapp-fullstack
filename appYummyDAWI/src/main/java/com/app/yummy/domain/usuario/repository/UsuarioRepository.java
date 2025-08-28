@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface UsuarioRepository {
     Optional<UsuarioModel>buscaPorId(Long usuarioId);
     List<UsuarioModel>todosLosUsuarios(String nombre);
+    List<UsuarioModel>listarTodos();
 
     UsuarioModel guardar(UsuarioModel model);
 }

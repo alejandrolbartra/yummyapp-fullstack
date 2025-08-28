@@ -18,13 +18,15 @@ public class init {
 
     @PostConstruct
     public void start(){
-        Optional<UsuarioModel> usuario = usuarioService.buscarUsuario(1L);
-        if(usuario.isPresent()){
-            log.info("Usuario Nombre: {}", usuario.get().getNombre());
-            log.info("Usuario Descripcion: {}", usuario.get().getDescripcion());
-            log.info("Usuario Categoria: {}", usuario.get().getCategoria());
+        try {
+            log.info("Aplicación iniciada correctamente");
+            
+            // Intentar listar usuarios
+            var usuarios = usuarioService.listarTodosLosUsuarios();
+            log.info("Usuarios encontrados: {}", usuarios.size());
+            
+        } catch (Exception e) {
+            log.error("Error al inicializar: {}", e.getMessage());
         }
-
-        usuarioService.guardar();
     }
 }

@@ -1,6 +1,5 @@
 package com.app.yummy.infrastructure.usuario.entity;
 
-import com.app.yummy.infrastructure.shared.Auditoria;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,18 +10,27 @@ import lombok.*;
 //@NoArgsConstructor
 //@AllArgsConstructor
 //@Builder
-public class UsuarioEntity extends Auditoria<String> {
+public class UsuarioEntity {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="id_usuario")
-    private long usuarioid;
+    private long idUsuario;
 
     @Column(name="nombre")
     private String nombre;
-
-    @Column(name="descripcion")
-    private String descripcion;
+    
+    @Column(name="apellido")
+    private String apellido;
+    
+    @Column(name="correo")
+    private String correo;
+    
+    @Column(name="rol")
+    private String rol;
+    
+    @Column(name="pass")
+    private String pass;
 
     //auditoria
     //@Column(name="fecha_creacion")
