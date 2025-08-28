@@ -6,6 +6,7 @@ import com.app.yummy.domain.usuario.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,11 +23,19 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public UsuarioModel guardar() {
         UsuarioModel usuario = new UsuarioModel();
-        usuario.setUsuarioid(7L);
-        usuario.setNombre("Jefry Prueba");
-        usuario.setDescripcion("Prueba de registro");
+        usuario.setIdUsuario(7L);
+        usuario.setNombre("Jefry");
+        usuario.setApellido("Prueba");
+        usuario.setCorreo("jefry@test.com");
+        usuario.setRol("Cliente");
+        usuario.setPass("123456");
 
         return usuarioRepository.guardar(usuario);
 
+    }
+    
+    @Override
+    public List<UsuarioModel> listarTodosLosUsuarios() {
+        return usuarioRepository.listarTodos();
     }
 }

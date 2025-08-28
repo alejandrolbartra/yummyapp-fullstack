@@ -31,23 +31,35 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
     public List<UsuarioModel> todosLosUsuarios(String nombre) {
         return List.of();
     }
+    
+    @Override
+    public List<UsuarioModel> listarTodos() {
+        return usuarioRepositoryJpa.findAll()
+                .stream()
+                .map(usuarioMapper::usuarioMap)
+                .toList();
+    }
 
     @Override
     public UsuarioModel guardar(UsuarioModel model) {
 
         UsuarioEntity usuarioEntity=new UsuarioEntity();
 
-        usuarioEntity.setUsuarioid(model.getUsuarioid());
-
+        usuarioEntity.setIdUsuario(model.getIdUsuario());
         usuarioEntity.setNombre(model.getNombre());
-        usuarioEntity.setDescripcion(model.getDescripcion());
+        usuarioEntity.setApellido(model.getApellido());
+        usuarioEntity.setCorreo(model.getCorreo());
+        usuarioEntity.setRol(model.getRol());
+        usuarioEntity.setPass(model.getPass());
 
         UsuarioEntity usuario = usuarioRepositoryJpa.save(usuarioEntity);
         UsuarioModel usuarioModel = new UsuarioModel();
-        usuarioModel.setUsuarioid(usuario.getUsuarioid());
-        usuarioModel.setNombre(usuarioEntity.getNombre());
-        usuarioModel.setDescripcion(usuarioEntity.getDescripcion());
-        usuarioModel.setCategoria("");
+        usuarioModel.setIdUsuario(usuario.getIdUsuario());
+        usuarioModel.setNombre(usuario.getNombre());
+        usuarioModel.setApellido(usuario.getApellido());
+        usuarioModel.setCorreo(usuario.getCorreo());
+        usuarioModel.setRol(usuario.getRol());
+        usuarioModel.setPass(usuario.getPass());
 
         return usuarioModel;
     }

@@ -7,14 +7,8 @@ export interface Usuario {
   nombre: string;
   apellido: string;
   correo: string;
-  telefono: string;
-  direccion: string;
   rol: string;
-  estado: boolean;
-  createdBy?: string;
-  createdAt?: string;
-  lastModifiedBy?: string;
-  lastModifiedAt?: string;
+  pass: string;
 }
 
 @Injectable({
