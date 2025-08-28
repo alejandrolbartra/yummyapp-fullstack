@@ -49,7 +49,7 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
         usuarioEntity.setNombre(model.getNombre());
         usuarioEntity.setApellido(model.getApellido());
         usuarioEntity.setCorreo(model.getCorreo());
-        usuarioEntity.setRol(model.getRol());
+       // usuarioEntity.setRol(model.getRol());
         usuarioEntity.setPass(model.getPass());
 
         UsuarioEntity usuario = usuarioRepositoryJpa.save(usuarioEntity);
@@ -58,7 +58,7 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
         usuarioModel.setNombre(usuario.getNombre());
         usuarioModel.setApellido(usuario.getApellido());
         usuarioModel.setCorreo(usuario.getCorreo());
-        usuarioModel.setRol(usuario.getRol());
+     //   usuarioModel.setRol(usuario.getRol());
         usuarioModel.setPass(usuario.getPass());
 
         return usuarioModel;
