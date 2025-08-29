@@ -7,7 +7,7 @@ import { UsuarioService, Usuario, Page } from '../core/services/usuario.service'
   selector: 'app-listado',
   imports: [
     RouterLink,
-    CommonModule
+    CommonModule,
   ],
   standalone: true,
   templateUrl: './listado.component.html',
@@ -18,7 +18,6 @@ export class ListadoComponent implements OnInit {
   loading = true;
   error: string | null = null;
 
-  // Propiedades para la paginación
   paginaActual = 0;
   tamanoPagina = 10;
   totalPaginas = 0;
@@ -35,7 +34,7 @@ export class ListadoComponent implements OnInit {
     this.error = null;
 
     this.usuarioService.obtenerUsuarios(this.paginaActual, this.tamanoPagina).subscribe({
-      next: (data: any) => {
+      next: (data: Page<Usuario>) => {
         this.usuarios = data.content;
         this.totalPaginas = data.totalPages;
         this.totalElementos = data.totalElements;

@@ -22,19 +22,13 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public UsuarioModel guardar() {
-        UsuarioModel usuario = new UsuarioModel();
-        usuario.setIdUsuario(7L);
-        usuario.setNombre("Jefry");
-        usuario.setApellido("Prueba");
-        usuario.setCorreo("jefry@test.com");
-        usuario.setRol("Cliente");
-        usuario.setPass("123456");
-
-        return usuarioRepository.save(usuario);
-    }
-    @Override
     public Page<UsuarioModel> listarTodosLosUsuarios(Pageable pageable) {
         return usuarioRepository.findAll(pageable);
     }
+
+    @Override
+    public UsuarioModel registrarUsuario(UsuarioModel usuario) {
+        return usuarioRepository.save(usuario);
+    }
+
 }

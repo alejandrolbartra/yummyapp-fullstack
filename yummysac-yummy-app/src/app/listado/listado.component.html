@@ -1,9 +1,16 @@
 <div class="px-6 py-10 bg-gray-100 min-h-screen">
   <div class="max-w-6xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+
     <div class="px-6 py-4 border-b border-gray-200">
       <h2 class="text-2xl font-bold text-gray-800">Listado de Usuarios</h2>
       <p class="text-sm text-gray-500">Información general de los usuarios registrados</p>
     </div>
+
+    <button
+      routerLink="/crear-usuario"
+      class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">
+      Registrar Usuario
+    </button>
 
     <div *ngIf="loading" class="text-center py-8">
       <p class="text-gray-600">Cargando usuarios...</p>
@@ -85,8 +92,5 @@
         </button>
       </div>
     </div>
-
   </div>
 </div>
-
-

@@ -9,8 +9,8 @@ import java.util.Optional;
 public interface UsuarioService {
     Optional<UsuarioModel> buscarUsuario(Long usuarioId);
 
-    UsuarioModel guardar();
-
     Page<UsuarioModel> listarTodosLosUsuarios(Pageable pageable);
+
+    UsuarioModel registrarUsuario(UsuarioModel usuario);
 
 }
