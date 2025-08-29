@@ -69,10 +69,20 @@ public class UsuarioServiceImpl implements UsuarioService {
         return jwtUtil.generateToken(usuario.getCorreo());
     }
 
-    @Override
+    /*@Override
     public UsuarioModel registrarUsuario(UsuarioModel usuario) {
         return usuarioRepository.save(usuario);
 
+    }*/
+
+    
+
+    @Override
+    public UsuarioModel registrarUsuario(UsuarioModel usuario) {
+        UsuarioEntity entity = usuarioWrapper.usuarioModelToEntity(usuario);
+        UsuarioEntity saved = usuarioRepositoryJpa.save(entity);
+        return usuarioWrapper.usuarioEntityToModel(saved);
     }
+
 
 }
