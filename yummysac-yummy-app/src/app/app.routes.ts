@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import {ListadoComponent} from './features/listado/listado.component';
 import {LoginComponent} from './features/login/login.component';
 import {CrearComponent} from './features/crear/crear.component';
+
 import {HomeComponent} from './features/home/home.component';
 
 export const routes: Routes = [

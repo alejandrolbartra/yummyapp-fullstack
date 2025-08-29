@@ -64,6 +64,7 @@
 			<artifactId>mapstruct-processor</artifactId>
 			<version>1.6.3</version>
 		</dependency>
+<<<<<<< HEAD
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
@@ -86,6 +87,8 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
+=======
+>>>>>>> 8e45b1fbdc7973e54eb84fbe74f9d9ebf42bc777
 	</dependencies>
 
 	<build>

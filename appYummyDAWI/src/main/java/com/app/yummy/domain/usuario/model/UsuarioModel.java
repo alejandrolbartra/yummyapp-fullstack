@@ -2,6 +2,7 @@ package com.app.yummy.domain.usuario.model;
 
 import lombok.Data;
 
+<<<<<<< HEAD
 public class UsuarioModel {
     private long usuarioid;
     private String nombre;
@@ -39,4 +40,15 @@ public class UsuarioModel {
     public void setPass(String pass) {
         this.pass = pass;
     }
+=======
+@Data
+public class UsuarioModel {
+    private long idUsuario;
+    private String nombre;
+    private String apellido;
+    private String correo;
+    private String rol;
+    private String pass;
+
+>>>>>>> 8e45b1fbdc7973e54eb84fbe74f9d9ebf42bc777
 }
