@@ -59,7 +59,6 @@ public class UsuarioServiceImpl implements UsuarioService {
         return entidades.map(usuarioWrapper::usuarioMap);
     }
 
-
     public String login(String correo, String pass) {
         UsuarioModel usuario = usuarioRepository.buscaPorCorreo(correo)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
@@ -68,6 +67,12 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
 
         return jwtUtil.generateToken(usuario.getCorreo());
+    }
+
+    @Override
+    public UsuarioModel registrarUsuario(UsuarioModel usuario) {
+        return usuarioRepository.save(usuario);
+
     }
 
 }
