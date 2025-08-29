@@ -2,6 +2,7 @@ package com.app.yummy.infrastructure.usuario.entity;
 
 import com.app.yummy.infrastructure.shared.Auditoria;
 import jakarta.persistence.*;
+
 import lombok.*;
 //@Builder
 @Entity
@@ -15,10 +16,13 @@ public class Usuario extends Auditoria<String> {
 
     @Column(name="nombre")
     private String nombre;
+    @Column(name = "Apellido")
+    private String apellido;
     @Column(name = "Correo")
     private String correo;
     @Column(name = "Pass")
     private String pass;
+
 
     //auditoria
     //@Column(name="fecha_creacion")
@@ -30,6 +34,14 @@ public class Usuario extends Auditoria<String> {
     //@Column(name="usuario_actualizacion")
     //private String usuario_actualizacion;
 
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
     public long getUsuarioid() {
         return usuarioid;

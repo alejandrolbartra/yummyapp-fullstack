@@ -2,10 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-<<<<<<< HEAD
       <profile default="true" name="Default" enabled="true" />
-=======
->>>>>>> 8e45b1fbdc7973e54eb84fbe74f9d9ebf42bc777
       <profile name="Annotation profile for yummy" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />

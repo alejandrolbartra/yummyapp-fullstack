@@ -1,18 +1,22 @@
 package com.app.yummy.aplication.usuario.usecase;
 
-<<<<<<< HEAD
 import com.app.yummy.domain.usuario.Seguridad.JwtUtil;
-=======
->>>>>>> 8e45b1fbdc7973e54eb84fbe74f9d9ebf42bc777
+import com.app.yummy.domain.usuario.model.RolModel;
 import com.app.yummy.domain.usuario.model.UsuarioModel;
 import com.app.yummy.domain.usuario.repository.UsuarioRepository;
 import com.app.yummy.domain.usuario.service.UsuarioService;
+import com.app.yummy.infrastructure.usuario.entity.RolUsuario;
+import com.app.yummy.infrastructure.usuario.entity.Usuario;
+import com.app.yummy.infrastructure.usuario.jpa.RolRepository;
+import com.app.yummy.infrastructure.usuario.jpa.RolUsuarioRepository;
+import com.app.yummy.infrastructure.usuario.mapper.UsuarioMapper;
 import lombok.RequiredArgsConstructor;
-<<<<<<< HEAD
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -20,24 +24,16 @@ public class UsuarioServiceImpl implements UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final JwtUtil jwtUtil;
     private final PasswordEncoder passwordEncoder;
+    private final RolUsuarioRepository rolesUsuarioRepository;
+    private final UsuarioMapper usuarioMapper;
 
-    public UsuarioServiceImpl(UsuarioRepository usuarioRepository, JwtUtil jwtUtil, PasswordEncoder passwordEncoder) {
+    public UsuarioServiceImpl(UsuarioRepository usuarioRepository, JwtUtil jwtUtil, PasswordEncoder passwordEncoder, RolUsuarioRepository rolesUsuarioRepository, UsuarioMapper usuarioMapper) {
         this.usuarioRepository = usuarioRepository;
         this.jwtUtil = jwtUtil;
         this.passwordEncoder = passwordEncoder;
+        this.rolesUsuarioRepository = rolesUsuarioRepository;
+        this.usuarioMapper = usuarioMapper;
     }
-=======
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
-
-@Service
-@RequiredArgsConstructor
-public class UsuarioServiceImpl implements UsuarioService {
-
-    private final UsuarioRepository usuarioRepository;
->>>>>>> 8e45b1fbdc7973e54eb84fbe74f9d9ebf42bc777
 
     @Override
     public Optional<UsuarioModel> buscarUsuario(Long usuarioId){
@@ -45,24 +41,20 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public UsuarioModel guardar() {
-        UsuarioModel usuario = new UsuarioModel();
-<<<<<<< HEAD
-        usuario.setUsuarioid(7L);
-        usuario.setNombre("Jefry Prueba");
-=======
-        usuario.setIdUsuario(7L);
-        usuario.setNombre("Jefry");
-        usuario.setApellido("Prueba");
-        usuario.setCorreo("jefry@test.com");
-        usuario.setRol("Cliente");
-        usuario.setPass("123456");
->>>>>>> 8e45b1fbdc7973e54eb84fbe74f9d9ebf42bc777
-
-        return usuarioRepository.guardar(usuario);
-
+    public List<UsuarioModel> listarUsuarios() {
+        List<UsuarioModel> usuarios = usuarioRepository.listarTodos();
+        return usuarios;
     }
-<<<<<<< HEAD
+
+//    @Override
+//    public UsuarioModel guardar() {
+//        UsuarioModel usuario = new UsuarioModel();
+//        usuario.setUsuarioid(7L);
+//        usuario.setNombre("Jefry Prueba");
+//
+//        return usuarioRepository.guardar(usuario);
+//
+//    }
 
     public String login(String correo, String pass) {
         UsuarioModel usuario = usuarioRepository.buscaPorCorreo(correo)
@@ -74,11 +66,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         return jwtUtil.generateToken(usuario.getCorreo());
     }
 
-=======
-    
     @Override
-    public List<UsuarioModel> listarTodosLosUsuarios() {
-        return usuarioRepository.listarTodos();
+    public List<RolModel> listarRols() {
+        List<RolUsuario> roles = rolesUsuarioRepository.findAll();
+        return roles.stream().map(usuarioMapper::rolModel).collect(Collectors.toList());
     }
->>>>>>> 8e45b1fbdc7973e54eb84fbe74f9d9ebf42bc777
 }

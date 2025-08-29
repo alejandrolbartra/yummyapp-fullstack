@@ -18,15 +18,15 @@ public class init {
 
     @PostConstruct
     public void start(){
-        try {
-            log.info("Aplicación iniciada correctamente");
-            
-            // Intentar listar usuarios
-            var usuarios = usuarioService.listarTodosLosUsuarios();
-            log.info("Usuarios encontrados: {}", usuarios.size());
-            
-        } catch (Exception e) {
-            log.error("Error al inicializar: {}", e.getMessage());
-        }
+//        try {
+//            log.info("Aplicación iniciada correctamente");
+//
+//            // Intentar listar usuarios
+//            var usuarios = usuarioService.listarTodosLosUsuarios();
+//            log.info("Usuarios encontrados: {}", usuarios.size());
+//
+//        } catch (Exception e) {
+//            log.error("Error al inicializar: {}", e.getMessage());
+//        }
     }
 }

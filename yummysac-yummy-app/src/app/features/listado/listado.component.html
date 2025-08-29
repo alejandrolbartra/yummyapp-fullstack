@@ -31,9 +31,9 @@
         </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-          @for (usuario of usuarios; track usuario.idUsuario) {
+          @for (usuario of usuarios; track usuario.usuarioid) {
             <tr>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ usuario.idUsuario }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ usuario.usuarioid }}</td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ usuario.nombre }}</td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ usuario.apellido }}</td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ usuario.correo }}</td>

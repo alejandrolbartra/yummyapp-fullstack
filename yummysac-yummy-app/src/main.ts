@@ -6,7 +6,7 @@ import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptors} from '@angular/c
 import {AuthInterceptor} from './app/auth/auth.interceptor';
 import {importProvidersFrom} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {CommonModule} from '@angular/common';
+import {CommonModule} from "@angular/common";
 import 'zone.js';
 
 
