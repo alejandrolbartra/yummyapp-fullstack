@@ -26,8 +26,8 @@ public class UsuarioEntity {
     @Column(name="correo")
     private String correo;
     
-    //@Column(name="rol")
-    //private String rol;
+    @Column(name="rol")
+    private String rol;
     
     @Column(name="pass")
     private String pass;

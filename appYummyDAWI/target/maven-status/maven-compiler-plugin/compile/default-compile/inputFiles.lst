@@ -1,0 +1,16 @@
+C:\Users\aleja\Desktop\Nova pasta\yummyapp-fullstack\appYummyDAWI\src\main\java\com\app\yummy\aplication\usuario\usecase\UsuarioServiceImpl.java
+C:\Users\aleja\Desktop\Nova pasta\yummyapp-fullstack\appYummyDAWI\src\main\java\com\app\yummy\domain\usuario\model\UsuarioModel.java
+C:\Users\aleja\Desktop\Nova pasta\yummyapp-fullstack\appYummyDAWI\src\main\java\com\app\yummy\domain\usuario\repository\UsuarioRepository.java
+C:\Users\aleja\Desktop\Nova pasta\yummyapp-fullstack\appYummyDAWI\src\main\java\com\app\yummy\domain\usuario\seguridad\JwtFilter.java
+C:\Users\aleja\Desktop\Nova pasta\yummyapp-fullstack\appYummyDAWI\src\main\java\com\app\yummy\domain\usuario\seguridad\JwtUtil.java
+C:\Users\aleja\Desktop\Nova pasta\yummyapp-fullstack\appYummyDAWI\src\main\java\com\app\yummy\domain\usuario\seguridad\SecurityConfig.java
+C:\Users\aleja\Desktop\Nova pasta\yummyapp-fullstack\appYummyDAWI\src\main\java\com\app\yummy\domain\usuario\service\UsuarioService.java
+C:\Users\aleja\Desktop\Nova pasta\yummyapp-fullstack\appYummyDAWI\src\main\java\com\app\yummy\infrastructure\configuration\AuditConfig.java
+C:\Users\aleja\Desktop\Nova pasta\yummyapp-fullstack\appYummyDAWI\src\main\java\com\app\yummy\infrastructure\configuration\AuditorAwareConfig.java
+C:\Users\aleja\Desktop\Nova pasta\yummyapp-fullstack\appYummyDAWI\src\main\java\com\app\yummy\infrastructure\shared\Auditoria.java
+C:\Users\aleja\Desktop\Nova pasta\yummyapp-fullstack\appYummyDAWI\src\main\java\com\app\yummy\infrastructure\usuario\entity\UsuarioEntity.java
+C:\Users\aleja\Desktop\Nova pasta\yummyapp-fullstack\appYummyDAWI\src\main\java\com\app\yummy\infrastructure\usuario\jpa\UsuarioRepositoryJpa.java
+C:\Users\aleja\Desktop\Nova pasta\yummyapp-fullstack\appYummyDAWI\src\main\java\com\app\yummy\infrastructure\usuario\mapper\UsuarioMapper.java
+C:\Users\aleja\Desktop\Nova pasta\yummyapp-fullstack\appYummyDAWI\src\main\java\com\app\yummy\presentation\init.java
+C:\Users\aleja\Desktop\Nova pasta\yummyapp-fullstack\appYummyDAWI\src\main\java\com\app\yummy\presentation\UsuarioController.java
+C:\Users\aleja\Desktop\Nova pasta\yummyapp-fullstack\appYummyDAWI\src\main\java\com\app\yummy\YummyApplication.java

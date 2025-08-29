@@ -13,4 +13,6 @@ public interface UsuarioService {
 
     Page<UsuarioModel> listarTodosLosUsuarios(Pageable pageable);
 
+    public String login(String correo, String pass);
+
 }

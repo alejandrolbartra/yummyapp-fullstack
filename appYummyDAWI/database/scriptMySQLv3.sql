@@ -171,4 +171,5 @@ VALUES
     ('Cristina', 'Silva', 'cristina.silva@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin'),
     ('Arturo', 'Torres', 'arturo.torres@example.com', 'pass789', 'Asistente', 1, NOW(), NOW(), 'admin', 'admin'),
     ('Natalia', 'Herrera', 'natalia.herrera@example.com', 'pass123', 'Vendedor', 1, NOW(), NOW(), 'admin', 'admin'),
-    ('Gabriel', 'Rojas', 'gabriel.rojas@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin');
+    ('Gabriel', 'Rojas', 'gabriel.rojas@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Juan','Betos','juan@email.com','$2a$12$e4oeuHI8nKjUCQCJmqbEEOcT5drDTG2wJWbtKjkPTdNERnqPHN61K','Gerente',1, NOW(), NOW(), 'admin', 'admin');
