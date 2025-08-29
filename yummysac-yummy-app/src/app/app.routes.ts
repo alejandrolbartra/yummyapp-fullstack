@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import {ListadoComponent} from './features/listado/listado.component';
-import {LoginComponent} from './features/login/login.component';
-import {CrearComponent} from './features/crear/crear.component';
+import {ListadoComponent} from './listado/listado.component';
+import {LoginComponent} from './login/login.component';
+import {CrearComponent} from './crear/crear.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/listado', pathMatch: 'full' },

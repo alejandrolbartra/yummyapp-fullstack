@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+
+export interface Page<T> {
+  content: T[];
+  totalElements: number;
+  totalPages: number;
+  size: number;
+  number: number;
+}
 
 export interface Usuario {
   idUsuario: number;
@@ -19,8 +28,14 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
-  obtenerUsuarios(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.apiUrl);
+  obtenerUsuarios(page: number, size: number): Observable<Page<Usuario>> {
+
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+
+
+    return this.http.get<Page<Usuario>>(this.apiUrl, { params: params });
   }
 
   obtenerUsuarioPorId(id: number): Observable<Usuario> {

@@ -4,9 +4,10 @@ import com.app.yummy.domain.usuario.model.UsuarioModel;
 import com.app.yummy.domain.usuario.repository.UsuarioRepository;
 import com.app.yummy.domain.usuario.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,7 +18,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Optional<UsuarioModel> buscarUsuario(Long usuarioId){
-        return usuarioRepository.buscaPorId(usuarioId);
+        return usuarioRepository.findById(usuarioId);
     }
 
     @Override
@@ -30,12 +31,10 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuario.setRol("Cliente");
         usuario.setPass("123456");
 
-        return usuarioRepository.guardar(usuario);
-
+        return usuarioRepository.save(usuario);
     }
-    
     @Override
-    public List<UsuarioModel> listarTodosLosUsuarios() {
-        return usuarioRepository.listarTodos();
+    public Page<UsuarioModel> listarTodosLosUsuarios(Pageable pageable) {
+        return usuarioRepository.findAll(pageable);
     }
 }

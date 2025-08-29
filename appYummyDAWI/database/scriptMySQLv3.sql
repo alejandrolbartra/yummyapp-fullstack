@@ -1,42 +1,46 @@
--- Crear la base de datos
-CREATE DATABASE bdAppYummy;
-USE bdAppYummy;
 
--- Tabla Usuario
-create table rol (
-	id_rol int primary key auto_increment,
-    nombrerol varchar(20),
-    estado int,
+-- Crear la base de datos
+CREATE DATABASE IF NOT EXISTS bdappyummy;
+USE bdappyummy;
+
+-- Tabla Rol
+CREATE TABLE rol (
+    id_rol INT PRIMARY KEY AUTO_INCREMENT,
+    nombrerol VARCHAR(20),
+    estado INT,
     fecha_creacion DATETIME,
     fecha_actualizacion DATETIME,
     usuario_creacion VARCHAR(255),
     usuario_actualizacion VARCHAR(255)
 );
 
-
+-- Tabla Usuario
 CREATE TABLE Usuario (
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
     Nombre VARCHAR(255) NOT NULL,
     Apellido VARCHAR(255),
-	Correo VARCHAR(255) UNIQUE,
+    Correo VARCHAR(255) UNIQUE,
     Pass VARCHAR(255),
-    estado int,
-    fecha_creacion DATETIME,
-    fecha_actualizacion DATETIME,
-    usuario_creacion VARCHAR(255),
-    usuario_actualizacion VARCHAR(255)
-);
-
-create table rol_usuario (
-	id_rol_usuario int primary key auto_increment,
-    id_usuario int,
-    id_rol int,
-    estado int,
+    estado INT,
     fecha_creacion DATETIME,
     fecha_actualizacion DATETIME,
     usuario_creacion VARCHAR(255),
     usuario_actualizacion VARCHAR(255),
-    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+    Rol VARCHAR(255) -- Agrega la columna 'Rol'
+);
+
+
+-- Tabla Rol_Usuario
+CREATE TABLE rol_usuario (
+    id_rol_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario INT,
+    id_rol INT,
+    estado INT,
+    fecha_creacion DATETIME,
+    fecha_actualizacion DATETIME,
+    usuario_creacion VARCHAR(255),
+    usuario_actualizacion VARCHAR(255),
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
     FOREIGN KEY (id_rol) REFERENCES rol(id_rol)
 );
 
@@ -44,7 +48,7 @@ create table rol_usuario (
 CREATE TABLE Categoria_origen (
     id_cat_or INT PRIMARY KEY AUTO_INCREMENT,
     Nombre_cat_or VARCHAR(255) NOT NULL,
-    estado int,
+    estado INT,
     fecha_creacion DATETIME,
     fecha_actualizacion DATETIME,
     usuario_creacion VARCHAR(255),
@@ -55,7 +59,7 @@ CREATE TABLE Categoria_origen (
 CREATE TABLE Categoria_comida (
     id_cat_com INT PRIMARY KEY AUTO_INCREMENT,
     Nombre_cat_com VARCHAR(255) NOT NULL,
-    estado int,
+    estado INT,
     fecha_creacion DATETIME,
     fecha_actualizacion DATETIME,
     usuario_creacion VARCHAR(255),
@@ -70,7 +74,7 @@ CREATE TABLE Producto (
     Stock INT NOT NULL,
     id_cat_or INT,
     id_cat_com INT,
-    estado int,
+    estado INT,
     fecha_creacion DATETIME,
     fecha_actualizacion DATETIME,
     usuario_creacion VARCHAR(255),
@@ -85,7 +89,7 @@ CREATE TABLE Venta (
     id_usuario INT NOT NULL,
     Fecha DATETIME NOT NULL,
     Total DECIMAL(10, 2) NOT NULL,
-    estado int,
+    estado INT,
     fecha_creacion DATETIME,
     fecha_actualizacion DATETIME,
     usuario_creacion VARCHAR(255),
@@ -100,7 +104,7 @@ CREATE TABLE Detalle_Venta (
     id_venta INT NOT NULL,
     Cantidad INT NOT NULL,
     Subtotal DECIMAL(10, 2) NOT NULL,
-    estado int,
+    estado INT,
     fecha_creacion DATETIME,
     fecha_actualizacion DATETIME,
     usuario_creacion VARCHAR(255),
@@ -109,47 +113,62 @@ CREATE TABLE Detalle_Venta (
     FOREIGN KEY (id_venta) REFERENCES Venta(id_venta)
 );
 
+-- Inserta los usuarios con la columna Rol
+INSERT INTO Usuario (Nombre, Apellido, Correo, Pass, Rol, estado, fecha_creacion, fecha_actualizacion, usuario_creacion, usuario_actualizacion) VALUES
+('Juan', 'Pérez', 'juan.perez@example.com', 'password123', 'Vendedor', 1, NOW(), NOW(), 'sistema', 'admin'),
+('Ana', 'García', 'ana.garcia@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'sistema', 'admin'),
+('Pedro', 'Rodríguez', 'pedro.rodriguez@example.com', 'pass789', 'Asistente', 1, NOW(), NOW(), 'sistema', 'admin');
 
-
-
-
--- Adicionando registros a la base de datos
-
--- Usuario
-INSERT INTO Usuario (Nombre, Apellido, Correo, Pass, estado, fecha_creacion, fecha_actualizacion, usuario_creacion, usuario_actualizacion) VALUES
-('Juan', 'Pérez', 'juan.perez@example.com', 'password123', 1, '2025-01-01 08:00:00', '2025-08-01 10:00:00', 'sistema', 'admin'),
-('Ana', 'García', 'ana.garcia@example.com', 'pass456', 1, '2025-01-02 08:00:00', '2025-08-02 10:00:00', 'sistema', 'admin'),
-('Pedro', 'Rodríguez', 'pedro.rodriguez@example.com', 'pass789', 1, '2025-01-03 08:00:00', '2025-08-03 10:00:00', 'sistema', 'admin');
-
-INSERT INTO rol (nombrerol, estado, fecha_creacion, fecha_actualizacion, usuario_creacion, usuario_actualizacion) VALUES
-('Administrador', 1, '2025-01-01 09:00:00', '2025-08-01 11:00:00', 'sistema', 'admin'),
-('Vendedor', 1, '2025-01-02 09:00:00', '2025-08-02 11:00:00', 'sistema', 'admin'),
-('Cliente', 1, '2025-01-03 09:00:00', '2025-08-03 11:00:00', 'sistema', 'admin');
-
-INSERT INTO rol_usuario (id_usuario, id_rol, estado, fecha_creacion, fecha_actualizacion, usuario_creacion, usuario_actualizacion) VALUES
-(1, 1, 1, '2025-01-01 12:00:00', '2025-08-01 12:30:00', 'sistema', 'admin'),
-(2, 2, 1, '2025-01-02 12:00:00', '2025-08-02 12:30:00', 'sistema', 'admin'),
-(3, 3, 1, '2025-01-03 12:00:00', '2025-08-03 12:30:00', 'sistema', 'admin');
-
-INSERT INTO Categoria_origen (Nombre_cat_or, estado, fecha_creacion, fecha_actualizacion, usuario_creacion, usuario_actualizacion) VALUES
-('Nacional', 1, '2025-01-01 13:00:00', '2025-08-01 14:00:00', 'sistema', 'admin'),
-('Importado', 1, '2025-01-02 13:00:00', '2025-08-02 14:00:00', 'sistema', 'admin');
-
-INSERT INTO Categoria_comida (Nombre_cat_com, estado, fecha_creacion, fecha_actualizacion, usuario_creacion, usuario_actualizacion) VALUES
-('Carnes', 1, '2025-01-01 14:00:00', '2025-08-01 15:00:00', 'sistema', 'admin'),
-('Verduras', 1, '2025-01-02 14:00:00', '2025-08-02 15:00:00', 'sistema', 'admin');
-
-INSERT INTO Producto (Nombre, Precio, Stock, id_cat_or, id_cat_com, estado, fecha_creacion, fecha_actualizacion, usuario_creacion, usuario_actualizacion) VALUES
-('Carne de Res', 15.00, 100, 1, 1, 1, '2025-01-01 15:00:00', '2025-08-01 16:00:00', 'sistema', 'admin'),
-('Lechuga', 2.50, 200, 2, 2, 1, '2025-01-02 15:00:00', '2025-08-02 16:00:00', 'sistema', 'admin');
-
-INSERT INTO Venta (id_usuario, Fecha, Total, estado, fecha_creacion, fecha_actualizacion, usuario_creacion, usuario_actualizacion) VALUES
-(1, '2025-08-20 10:00:00', 30.00, 1, '2025-08-20 10:00:00', '2025-08-20 10:00:00', 'sistema', 'admin'),
-(2, '2025-08-21 11:00:00', 45.00, 1, '2025-08-21 11:00:00', '2025-08-21 11:00:00', 'sistema', 'admin');
-
-INSERT INTO Detalle_Venta (id_producto, id_venta, Cantidad, Subtotal, estado, fecha_creacion, fecha_actualizacion, usuario_creacion, usuario_actualizacion) VALUES
-(1, 1, 2, 30.00, 1, '2025-08-20 10:15:00', '2025-08-20 10:15:00', 'sistema', 'admin'),
-(2, 2, 3, 7.50, 1, '2025-08-21 11:15:00', '2025-08-21 11:15:00', 'sistema', 'admin');
-
-
-use bd_utilHome;
+-- Y los otros 50 usuarios que agregaste
+INSERT INTO usuario (Nombre, Apellido, Correo, Pass, Rol, estado, fecha_creacion, fecha_actualizacion, usuario_creacion, usuario_actualizacion)
+VALUES
+    ('Maria', 'Gomez', 'maria.gomez@example.com', 'pass123', 'Vendedor', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Carlos', 'López', 'carlos.lopez@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Laura', 'Martínez', 'laura.martinez@example.com', 'pass789', 'Asistente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('David', 'Pérez', 'david.perez@example.com', 'pass123', 'Vendedor', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Ana', 'Sánchez', 'ana.sanchez@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Javier', 'Fernández', 'javier.fernandez@example.com', 'pass789', 'Asistente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Isabel', 'Ramírez', 'isabel.ramirez@example.com', 'pass123', 'Vendedor', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Sergio', 'Díaz', 'sergio.diaz@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Carmen', 'Vargas', 'carmen.vargas@example.com', 'pass789', 'Asistente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Andrés', 'Morales', 'andres.morales@example.com', 'pass123', 'Vendedor', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Elena', 'Ruiz', 'elena.ruiz@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Pablo', 'Jiménez', 'pablo.jimenez@example.com', 'pass789', 'Asistente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Sofía', 'Castro', 'sofia.castro@example.com', 'pass123', 'Vendedor', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Miguel', 'Ortega', 'miguel.ortega@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Lucia', 'Silva', 'lucia.silva@example.com', 'pass789', 'Asistente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Daniel', 'Torres', 'daniel.torres@example.com', 'pass123', 'Vendedor', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Silvia', 'Herrera', 'silvia.herrera@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Mario', 'Rojas', 'mario.rojas@example.com', 'pass789', 'Asistente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Lorena', 'Iglesias', 'lorena.iglesias@example.com', 'pass123', 'Vendedor', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Jorge', 'Santos', 'jorge.santos@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Natalia', 'Paz', 'natalia.paz@example.com', 'pass789', 'Asistente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Héctor', 'Blanco', 'hector.blanco@example.com', 'pass123', 'Vendedor', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Irene', 'Romero', 'irene.romero@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Oscar', 'Medina', 'oscar.medina@example.com', 'pass789', 'Asistente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Marina', 'Soto', 'marina.soto@example.com', 'pass123', 'Vendedor', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Raúl', 'Gil', 'raul.gil@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Eva', 'Cruz', 'eva.cruz@example.com', 'pass789', 'Asistente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('José', 'Reyes', 'jose.reyes@example.com', 'pass123', 'Vendedor', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Angela', 'Guerra', 'angela.guerra@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Ricardo', 'Luna', 'ricardo.luna@example.com', 'pass789', 'Asistente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Monica', 'Torres', 'monica.torres@example.com', 'pass123', 'Vendedor', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Felipe', 'Morales', 'felipe.morales@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Beatriz', 'Ruiz', 'beatriz.ruiz@example.com', 'pass789', 'Asistente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Diego', 'Sánchez', 'diego.sanchez@example.com', 'pass123', 'Vendedor', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Nuria', 'Gómez', 'nuria.gomez@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Adrián', 'López', 'adrian.lopez@example.com', 'pass789', 'Asistente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Verónica', 'Martínez', 'veronica.martinez@example.com', 'pass123', 'Vendedor', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Esteban', 'Pérez', 'esteban.perez@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Paola', 'Ramírez', 'paola.ramirez@example.com', 'pass789', 'Asistente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Gonzalo', 'Díaz', 'gonzalo.diaz@example.com', 'pass123', 'Vendedor', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Andrea', 'Vargas', 'andrea.vargas@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Fernando', 'Morales', 'fernando.morales@example.com', 'pass789', 'Asistente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Teresa', 'Ruiz', 'teresa.ruiz@example.com', 'pass123', 'Vendedor', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Manuel', 'Jiménez', 'manuel.jimenez@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Clara', 'Castro', 'clara.castro@example.com', 'pass789', 'Asistente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Samuel', 'Ortega', 'samuel.ortega@example.com', 'pass123', 'Vendedor', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Cristina', 'Silva', 'cristina.silva@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Arturo', 'Torres', 'arturo.torres@example.com', 'pass789', 'Asistente', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Natalia', 'Herrera', 'natalia.herrera@example.com', 'pass123', 'Vendedor', 1, NOW(), NOW(), 'admin', 'admin'),
+    ('Gabriel', 'Rojas', 'gabriel.rojas@example.com', 'pass456', 'Gerente', 1, NOW(), NOW(), 'admin', 'admin');

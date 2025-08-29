@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { UsuarioService, Usuario } from '../../core/services/usuario.service';
+import { UsuarioService, Usuario, Page } from '../core/services/usuario.service';
 
 @Component({
   selector: 'app-listado',
@@ -18,6 +18,12 @@ export class ListadoComponent implements OnInit {
   loading = true;
   error: string | null = null;
 
+  // Propiedades para la paginación
+  paginaActual = 0;
+  tamanoPagina = 10;
+  totalPaginas = 0;
+  totalElementos = 0;
+
   constructor(private usuarioService: UsuarioService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
@@ -27,10 +33,12 @@ export class ListadoComponent implements OnInit {
   cargarUsuarios(): void {
     this.loading = true;
     this.error = null;
-    
-    this.usuarioService.obtenerUsuarios().subscribe({
-      next: (data) => {
-        this.usuarios = data;
+
+    this.usuarioService.obtenerUsuarios(this.paginaActual, this.tamanoPagina).subscribe({
+      next: (data: any) => {
+        this.usuarios = data.content;
+        this.totalPaginas = data.totalPages;
+        this.totalElementos = data.totalElements;
         this.loading = false;
         this.cdr.detectChanges();
       },
@@ -41,5 +49,20 @@ export class ListadoComponent implements OnInit {
         this.cdr.detectChanges();
       }
     });
+  }
+
+  irAPagina(pagina: number): void {
+    if (pagina >= 0 && pagina < this.totalPaginas) {
+      this.paginaActual = pagina;
+      this.cargarUsuarios();
+    }
+  }
+
+  paginaSiguiente(): void {
+    this.irAPagina(this.paginaActual + 1);
+  }
+
+  paginaAnterior(): void {
+    this.irAPagina(this.paginaActual - 1);
   }
 }

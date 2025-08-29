@@ -1,14 +1,9 @@
 package com.app.yummy.domain.usuario.repository;
 
 import com.app.yummy.domain.usuario.model.UsuarioModel;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-import java.util.Optional;
 
-public interface UsuarioRepository {
-    Optional<UsuarioModel>buscaPorId(Long usuarioId);
-    List<UsuarioModel>todosLosUsuarios(String nombre);
-    List<UsuarioModel>listarTodos();
+public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long> {
 
-    UsuarioModel guardar(UsuarioModel model);
 }
