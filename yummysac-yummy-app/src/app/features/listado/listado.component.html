@@ -1,0 +1,53 @@
+<div class="px-6 py-10 bg-gray-100 min-h-screen">
+  <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="px-6 py-4 border-b border-gray-200">
+      <h2 class="text-2xl font-bold text-gray-800">Listado de Usuarios</h2>
+      <p class="text-sm text-gray-500">Información general de los usuarios registrados</p>
+    </div>
+    <div class="mt-6 text-left pl-6">
+      <a
+        routerLink="/crear"
+        class="inline-block rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+      >
+        Agregar usuario
+      </a>
+    </div>
+
+    <div class="mt-6 text-left pl-6">
+      <a
+        routerLink="/login"
+        class="inline-block rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+      >
+        Volver
+      </a>
+    </div>
+
+
+    <br>
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rol</th>
+        </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          @for (usuario of usuarios; track usuario.email) {
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ usuario.nombre }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ usuario.email }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ usuario.rol }}</td>
+            </tr>
+          }
+        </tbody>
+
+      </table>
+    </div>
+
+  </div>
+
+</div>
+
+
